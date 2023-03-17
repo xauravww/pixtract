@@ -12,23 +12,28 @@ import jwt_decode from "jwt-decode"
 import { client } from "../client.js"
 // Login code
 const Login = () => {
-  // const navigate = useNavigate()
+  const navigate = useNavigate()
   function responseGoogle(response) {
+    //-----------------------------------------
+    //just checking out if it giving any response
     console.log(response)
-    //   localStorage.setItem("user", JSON.stringify(response))
-    //   var decodedHeader = jwt_decode(response.credential)
-    //   console.log(decodedHeader)
-    //   const { name, sub, picture } = decodedHeader
-    //   // in older version of api it was name , googleId , imageUrl
-    //   const doc = {
-    //     _id: sub,
-    //     _type: "users",
-    //     userName: name,
-    //     image: picture
-    //   }
-    //   client.createIfNotExists(doc).then(() => {
-    //     navigate("/", { replace: true })
-    //   })
+    // -------------------------------------------
+
+    localStorage.setItem("user", JSON.stringify(response))
+    var decodedHeader = jwt_decode(response.credential)
+    console.log(decodedHeader)
+    const { name, sub, picture } = decodedHeader
+    // in older version of api it was name , googleId , imageUrl
+    const doc = {
+      _id: sub,
+      _type: "user",
+      userName: name,
+      image: picture
+    }
+    client.createIfNotExists(doc).then(() => {
+      console.log("name  is" + " " + name)
+      navigate("/", { replace: true })
+    })
   }
   return (
     <div className="flex justify-start items-center flex-col h-screen">
