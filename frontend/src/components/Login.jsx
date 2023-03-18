@@ -31,7 +31,7 @@ const Login = () => {
       image: picture
     }
     client.createIfNotExists(doc).then(() => {
-      console.log("name  is" + " " + name)
+      console.log("sub or id  is" + " " + name)
       navigate("/", { replace: true })
     })
   }
@@ -58,21 +58,30 @@ const Login = () => {
               clientId={process.env.REACT_APP_GOOGLE_API_TOKEN}
             >
               <GoogleLogin
-                clientId={process.env.REACT_APP_GOOGLE_API_TOKEN}
-                render={(renderProps) => (
-                  <button
-                    type="button"
-                    className="bg-mainColor flex justify-center items-center p-3 rounded-lg cursor-pointer outline-none"
-                    onClick={renderProps.onClick}
-                    disabled={renderProps.disabled}
-                  >
-                    <FcGoogle className="mr-4" />
-                    Sign in with Google
-                  </button>
-                )}
-                onSuccess={responseGoogle}
-                onFailure={responseGoogle}
-                cookiePolicy="single_host_origin"
+                //   clientId={process.env.REACT_APP_GOOGLE_API_TOKEN}
+                //   render={(renderProps) => (
+                //     <button
+                //       type="button"
+                //       className="bg-mainColor flex justify-center items-center p-3 rounded-lg cursor-pointer outline-none"
+                //       onClick={renderProps.onClick}
+                //       disabled={renderProps.disabled}
+                //     >
+                //       <FcGoogle className="mr-4" />
+                //       Sign in with Google
+                //     </button>
+                //   )}
+                //   onSuccess={responseGoogle}
+                //   onFailure={responseGoogle}
+                //   cookiePolicy="single_host_origin"
+                // />
+                onSuccess={(codeResponse) => responseGoogle(codeResponse)}
+                onError={() => {
+                  console.log("Login Failed")
+                }}
+                size="large"
+                text="Sign in with Google"
+                shape="square"
+                width="12px"
               />
             </GoogleOAuthProvider>
           </div>
