@@ -17,11 +17,14 @@ const Feed = () => {
       const query = searchQuery(categoryId)
       client.fetch(query).then((data) => {
         setPins(data) // another state
+        console.log("query started 1st")
         setLoading(false)
       })
+      console.log(query)
     } else {
       client.fetch(feedQuery).then((data) => {
         setPins(data)
+        console.log("query started 2nd")
         setLoading(false)
       })
     }
