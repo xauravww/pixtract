@@ -4,7 +4,7 @@ export const userQuery = (sub) => {
 }
 
 export const searchQuery = (searchTerm) => {
-  const query = `*[_type=="pin && title match '${searchTerm}*' || category match '${searchTerm}*' || about match '${searchTerm}*'  ]{
+  const query = `*[_type == "pin && title match '${searchTerm}*' || category match '${searchTerm}*' || about match '${searchTerm}*'  ]{
     image{
       asset ->{
         url
@@ -30,7 +30,7 @@ export const searchQuery = (searchTerm) => {
 }
 // asterisk added '${searchTerm}*' searches even before searching whole term
 
-export const feedQuery = `*[_type=pin ] | order(_createAt desc){
+export const feedQuery = `*[_type == "pin" ] | order(_createdAt desc){
   image{
     asset ->{
       url
