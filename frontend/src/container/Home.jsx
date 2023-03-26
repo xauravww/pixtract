@@ -11,6 +11,7 @@ import { client } from "../client"
 import logo from "../assets/logopix.png"
 
 import jwt_decode from "jwt-decode"
+import { fetchUser } from "../utils/fetchUser.js"
 const Home = () => {
   const [toggleSidebar, setToggleSidebar] = useState(false)
   const [user, setUser] = useState(null)
@@ -21,10 +22,7 @@ const Home = () => {
   //     ? JSON.parse(localStorage.getItem("user"))
   //     : localStorage.clear()
 
-  const userInfo =
-    localStorage.getItem("user") !== "undefined"
-      ? localStorage.getItem("user")
-      : localStorage.clear()
+  const userInfo = fetchUser()
 
   var decodedHeader = jwt_decode(userInfo)
 
