@@ -8,7 +8,7 @@ export default defineConfig({
   title: 'PixTract Project',
 
   projectId: 'uxsrj2pd',
-  dataset: 'productions',
+  dataset: 'productionpix',
 
   plugins: [deskTool(), visionTool()],
 
