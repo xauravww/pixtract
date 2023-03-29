@@ -1,40 +1,69 @@
 import React from "react"
-// import { GoogleLogin } from "react-google-login" // depreceated now , use "@react-oauth/google" instead
 import { GoogleLogin } from "@react-oauth/google"
 import { GoogleOAuthProvider } from "@react-oauth/google"
 import { useNavigate } from "react-router-dom"
 import { FcGoogle } from "react-icons/fc"
 import logo from "../assets/logopix.png"
 import share from "../assets/share.mp4"
-
 import jwt_decode from "jwt-decode"
-
 import { client } from "../client.js"
+
 // Login code
 const Login = () => {
   const navigate = useNavigate()
-  function responseGoogle(response) {
-    //-----------------------------------------
-    //just checking out if it giving any response
-    console.log(response)
-    // -------------------------------------------
 
+  function responseGoogle(response) {
     localStorage.setItem("user", JSON.stringify(response))
     var decodedHeader = jwt_decode(response.credential)
-    console.log(decodedHeader)
     const { name, sub, picture } = decodedHeader
-    // in older version of api it was name , googleId , imageUrl
-    const doc = {
-      _id: sub,
-      _type: "user",
-      userName: name,
-      image: picture
-    }
-    client.createIfNotExists(doc).then(() => {
-      console.log("sub or id  is" + " " + name)
-      navigate("/", { replace: true })
+
+    // Check if the user already exists in Sanity
+    client.getDocument(sub).then((user) => {
+      if (user) {
+        console.log("new doc not creating")
+        // Update the user document with the new details
+        const updateUserDoc = {
+          ...user,
+          userName: name,
+          image: picture
+        }
+
+        client
+          .patch(sub)
+          .set(updateUserDoc)
+          .commit()
+          .then(() => {
+            client.getDocument(sub).then((user) => {
+              console.log(user)
+            })
+
+            navigate("/", { replace: true })
+          })
+          .catch((error) => {
+            console.error("Error updating user document: ", error)
+          })
+      } else {
+        console.log("new doc creating")
+        // Create a new user document
+        const newUserDoc = {
+          _id: sub,
+          _type: "user",
+          userName: name,
+          image: picture
+        }
+
+        client
+          .create(newUserDoc)
+          .then(() => {
+            navigate("/", { replace: true })
+          })
+          .catch((error) => {
+            console.error("Error creating user document: ", error)
+          })
+      }
     })
   }
+
   return (
     <div className="flex justify-start items-center flex-col h-screen">
       <div className="relative w-full h-full">
@@ -58,22 +87,6 @@ const Login = () => {
               clientId={process.env.REACT_APP_GOOGLE_API_TOKEN}
             >
               <GoogleLogin
-                //   clientId={process.env.REACT_APP_GOOGLE_API_TOKEN}
-                //   render={(renderProps) => (
-                //     <button
-                //       type="button"
-                //       className="bg-mainColor flex justify-center items-center p-3 rounded-lg cursor-pointer outline-none"
-                //       onClick={renderProps.onClick}
-                //       disabled={renderProps.disabled}
-                //     >
-                //       <FcGoogle className="mr-4" />
-                //       Sign in with Google
-                //     </button>
-                //   )}
-                //   onSuccess={responseGoogle}
-                //   onFailure={responseGoogle}
-                //   cookiePolicy="single_host_origin"
-                // />
                 onSuccess={(codeResponse) => responseGoogle(codeResponse)}
                 onError={() => {
                   console.log("Login Failed")

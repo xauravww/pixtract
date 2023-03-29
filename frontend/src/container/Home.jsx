@@ -34,6 +34,7 @@ const Home = () => {
     console.log(query)
     client.fetch(query).then((data) => {
       setUser(data[0]) // again a state
+      // console.log(user)
     })
   }, [])
 
