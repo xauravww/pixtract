@@ -85,7 +85,7 @@ const Home = () => {
       <div className="pb-2 flex-1 h-screen overflow-y-scroll " ref={scrollRef}>
         <Routes>
           <Route path="/user-profile/:sub" element={<UserProfile />}></Route>
-          {/* making our above code dynamic using :sub */}
+          {/* making our above code dynamic using :sub  and we have to use sub in case of useParams there*/}
           <Route path="/*" element={<Pins user={user && user} />}></Route>
         </Routes>
       </div>
