@@ -1,7 +1,9 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import Masonry from "react-masonry-css"
 import Pin from "./Pin.jsx"
-const breakpointObj = {
+
+import Spinner from "./Spinner.jsx"
+const breakpointColumnsObj = {
   default: 4,
   3000: 6,
   2000: 5,
@@ -9,13 +11,40 @@ const breakpointObj = {
   1000: 2,
   500: 1
 }
+
 const MasonryLayout = ({ pins }) => {
+  const [loaded, setLoaded] = useState(0)
+  const [total, setTotal] = useState(pins.length)
+
+  useEffect(() => {
+    if (loaded === total) {
+      // All images have loaded, do something here
+      console.log("All images have loaded!")
+    }
+  }, [loaded, total])
+
+  const handleImageLoad = () => {
+    setLoaded((prevState) => prevState + 1)
+  }
+
   return (
-    <Masonry className="flex animate-slide-fwd" breakpointCols={breakpointObj}>
-      {pins?.map((pin) => (
-        <Pin key={pin._id} pin={pin} className="w-max" />
-      ))}
-    </Masonry>
+    <>
+      {/* {total === 0 && <Spinner message="No pin found..." />} */}
+      {total > 0 && (
+        <>
+          <Masonry
+            breakpointCols={breakpointColumnsObj}
+            className="flex animate-slide-fwd"
+            columnClassName="my-masonry-grid_column"
+          >
+            {pins.map((pin, index) => (
+              <Pin key={index} pin={pin} onLoad={handleImageLoad} />
+            ))}
+          </Masonry>
+          {/* {loaded < total && <div>Loading more pins...</div>} */}
+        </>
+      )}
+    </>
   )
 }
 
