@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react"
 import { HiMenu } from "react-icons/hi"
-import { HiArrowRight } from "react-icons/hi"
+import { AiOutlineCloseCircle } from "react-icons/ai"
 import { Link, Route, Routes } from "react-router-dom"
 
 import { Sidebar, UserProfile } from "../components/index.js"
@@ -48,14 +48,14 @@ const Home = () => {
         <Sidebar user={user && user} />
       </div>
       <div className="flex md:hidden flex-row">
-        <div className="p-2 w-full flex flex-row justify-between items-center shadow-md">
+        <div className="px-2 w-full flex flex-row justify-between items-center shadow-md">
           <HiMenu
             fontSize={40}
             className="cursor-pointer"
             onClick={() => setToggleSidebar(true)}
           />
           <Link to="/">
-            <img src={logo} alt="logo" className="w-28" />
+            <img src={logo} alt="logo" className="w-28 h-13" />
           </Link>
           <Link to={`user-profile/${user?._id}`}>
             {/* <img src={user?.image} alt="logo" className="w-28" /> */}
@@ -70,7 +70,7 @@ const Home = () => {
         {toggleSidebar && (
           <div className="fixed w-4/5 bg-white h-screen overflow-y-auto shadow-md z-10 animate-slide-in">
             <div className="absolute w-full flex justify-end items-center p-2">
-              <HiArrowRight
+              <AiOutlineCloseCircle
                 fontSize={30}
                 className="cursor-pointer"
                 onClick={() => setToggleSidebar(false)}
