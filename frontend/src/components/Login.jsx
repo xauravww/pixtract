@@ -32,7 +32,11 @@ const Login = () => {
 
   function responseGoogle(response) {
     localStorage.setItem("user", JSON.stringify(response))
+    console.log("response is this")
+    console.log(response)
     var decodedHeader = jwt_decode(response.credential)
+    console.log("jwt decode is taking this")
+    console.log(response.credential)
     const { name, sub, picture } = decodedHeader
 
     // Check if the user already exists in Sanity
