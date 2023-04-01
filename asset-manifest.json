@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/pixtract/static/css/main.36bec676.css",
+    "main.js": "/pixtract/static/js/main.6e25f374.js",
+    "static/media/share.mp4": "/pixtract/static/media/share.9c21a5f838fdfb1df67e.mp4",
+    "static/media/logopix.png": "/pixtract/static/media/logopix.7091f60a63efa76d4a2d.png",
+    "index.html": "/pixtract/index.html",
+    "main.36bec676.css.map": "/pixtract/static/css/main.36bec676.css.map",
+    "main.6e25f374.js.map": "/pixtract/static/js/main.6e25f374.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.36bec676.css",
+    "static/js/main.6e25f374.js"
+  ]
+}
