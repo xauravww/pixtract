@@ -8,6 +8,9 @@ import share from "../assets/share.mp4"
 import jwt_decode from "jwt-decode"
 import { client } from "../client.js"
 import { FaTimes } from "react-icons/fa"
+
+import Typist from "react-typist"
+
 // Login code
 const Login = () => {
   const navigate = useNavigate()
@@ -103,6 +106,31 @@ const Login = () => {
           <div className="p-5">
             <img src={logo} width="130px" alt="logo" />
           </div>
+          {/* Animation */}
+
+          <h1 className="text-3xl font-bold text-white">
+            Share your moments with{" "}
+            <Typist
+              cursor={{ hideWhenDone: true }}
+              repeat={Infinity}
+              delay={2000}
+              avgTypingDelay={100}
+              startDelay={2000}
+            >
+              <Typist.Delay ms={2000} />
+              <span>friends 😇</span>
+              <Typist.Backspace count={11} delay={1000} />
+              <Typist.Backspace count={11} delay={1000} />
+              <span>family 👨‍👩‍👧‍👦</span>
+              <Typist.Backspace count={9} delay={1000} />
+              <Typist.Backspace count={9} delay={1000} />
+              <span>colleagues 🤝</span>
+              <Typist.Backspace count={13} delay={1000} />
+              <Typist.Backspace count={13} delay={1000} />
+              <span>world 🤗</span>
+              {/* <Typist.Backspace count={8} delay={1000} /> */}
+            </Typist>
+          </h1>
 
           <div className="shadow-2xl">
             <GoogleOAuthProvider
@@ -122,6 +150,7 @@ const Login = () => {
           </div>
         </div>
       </div>
+
       {showAlert && (
         <div class="fixed bottom-4 left-1/2 transform -translate-x-1/2 w-full sm:w-2/3 md:w-1/2 lg:w-1/3 xl:w-1/4 bg-red-500 text-white rounded-lg shadow-lg px-4  text-center">
           <div className="flex justify-end">
