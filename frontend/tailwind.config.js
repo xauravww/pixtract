@@ -3,6 +3,9 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["Comfortaa", "sans-serif"]
+      },
       margin: {
         320: "320px"
       },
