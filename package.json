@@ -1,5 +1,9 @@
 {
   "devDependencies": {
     "gh-pages": "^5.0.0"
+  },
+  "dependencies": {
+    "react-type-animation": "^3.0.1",
+    "react-typist": "^2.0.5"
   }
 }

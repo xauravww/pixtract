@@ -122,6 +122,8 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
                       : destination}
                   </a>
                 )}
+
+                {/* When user who posted it and hovering it are same user then it shows a delete button */}
                 {postedBy?._id === sub && (
                   <button
                     type="button"

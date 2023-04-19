@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import Masonry from "react-masonry-css"
 import Pin from "./Pin.jsx"
 
-import Spinner from "./Spinner.jsx"
+// import Spinner from "./Spinner.jsx"
 const breakpointColumnsObj = {
   default: 4,
   3000: 6,
