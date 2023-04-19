@@ -15,7 +15,7 @@ const Sidebar = ({ user, closeToggle }) => {
     // for full screen
   }
   return (
-    <div className="flex flex-col justify-between bg-white h-full overflow-y-scroll min-w-210 hide-scrollbar  ">
+    <div className="flex flex-col justify-between bg-white h-full overflow-y-scroll min-w-210 hide-scrollbar bg-red-100 ">
       <div className="flex flex-col">
         <Link
           to="/"
@@ -60,7 +60,7 @@ const Sidebar = ({ user, closeToggle }) => {
       {user && (
         <Link
           to={`user-profile/${user._id}`}
-          className="flex my-5 mb-3 gap-2 gap-2 p-2 items-center bg-white"
+          className="mx-3 mb-3 mt-10 flex items-center gap-2 rounded-lg bg-white p-2 shadow-lg"
         >
           <img
             src={user.image}
