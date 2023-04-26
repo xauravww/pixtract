@@ -1,9 +1,14 @@
 import React from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { IoMdAdd, IoMdSearch } from "react-icons/io"
+import { RxCross2 } from "react-icons/rx"
 const Navbar = ({ searchTerm, setSearchTerm, user }) => {
   const navigate = useNavigate()
   if (!user) return null
+
+  const clearSearch = () => {
+    setSearchTerm("")
+  }
   return (
     <div className="flex gap-2 md:gap-5 w-full mt-5 pb-7 ">
       <div className="flex justify-start items-center w-full px-2 rounded-md bg-white border-none outline-none focus-within:shadow-sm">
@@ -14,8 +19,11 @@ const Navbar = ({ searchTerm, setSearchTerm, user }) => {
           placeholder="Search"
           value={searchTerm}
           onFocus={() => navigate("/search")}
-          className="p-2 w-full bg-white outline-none"
+          className="p-2 w-full bg-white outline-none input"
         />
+        <div>
+          <RxCross2 onClick={() => clearSearch()} />
+        </div>
       </div>
       <div className="flex gap-3 ">
         <Link to={`user-profile/${user?._id}`} className="hidden md:block">
