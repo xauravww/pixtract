@@ -58,7 +58,7 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
         <div
           onMouseEnter={() => setPostHovered(true)}
           onMouseLeave={() => setPostHovered(false)}
-          className="relative cursor-zoom-in w-auto hover:shadow-lg rounded-lg overflow-hidden transition-all duration-500 ease-in-out"
+          className="relative cursor-pointer w-auto hover:shadow-lg hover:outline rounded-lg overflow-hidden transition-all duration-500 ease-in-out"
         >
           {/* urlfor is given by sanity client to fetch images in optimized manner */}
           <img
