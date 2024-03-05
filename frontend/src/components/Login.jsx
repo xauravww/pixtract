@@ -8,9 +8,7 @@ import share from "../assets/share.mp4"
 import jwt_decode from "jwt-decode"
 import { client } from "../client.js"
 import { FaTimes } from "react-icons/fa"
-
-import Typist from "react-typist"
-
+import { TypeAnimation } from "react-type-animation"
 // Login code
 const Login = () => {
   const navigate = useNavigate()
@@ -103,33 +101,29 @@ const Login = () => {
         />
 
         <div className="absolute flex flex-col justify-center items-center top-0 right-0 left-0 bottom-0 bg-blackOverlay">
-          <div className="p-5">
+          <div className="p-5 mt-5 mb-5">
             <img src={logo} width="130px" alt="logo" />
           </div>
           {/* Animation */}
 
           <h1 className="text-3xl font-bold text-white">
-            Share your moments with{" "}
-            <Typist
-              cursor={{ hideWhenDone: true }}
+            <TypeAnimation
+              sequence={[
+                // Same substring at the start will only be typed out once, initially
+                "Share your moments with Friends",
+                1000, // wait 1s before replacing "Mice" with "Hamsters"
+                "Share your moments with Family",
+                1000,
+                "Share your moments with Teachers",
+                1000,
+                "Share your moments with Classmates",
+                1000
+              ]}
+              wrapper="span"
+              speed={50}
+              // style={{ fontSize: "2em", display: "inline-block" }}
               repeat={Infinity}
-              delay={2000}
-              avgTypingDelay={100}
-              startDelay={2000}
-            >
-              <Typist.Delay ms={2000} />
-              <span>friends 😇</span>
-              <Typist.Backspace count={11} delay={1000} />
-              <Typist.Backspace count={11} delay={1000} />
-              <span>family 👨‍👩‍👧‍👦</span>
-              <Typist.Backspace count={9} delay={1000} />
-              <Typist.Backspace count={9} delay={1000} />
-              <span>colleagues 🤝</span>
-              <Typist.Backspace count={13} delay={1000} />
-              <Typist.Backspace count={13} delay={1000} />
-              <span>world 🤗</span>
-              {/* <Typist.Backspace count={8} delay={1000} /> */}
-            </Typist>
+            />
           </h1>
 
           <div className="shadow-2xl">
